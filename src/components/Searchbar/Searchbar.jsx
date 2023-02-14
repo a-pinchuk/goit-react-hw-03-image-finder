@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import {
   SearchHeader,
   SearchForm,
-  SearchForm_button,
-  SearchForm_button_label,
-  SearchForm_input,
+  SearchFormButton,
+  SearchFormButtonLabel,
+  SearchFormInput,
 } from './Searchbar.styled';
 
 export default class Searchbar extends PureComponent {
@@ -28,11 +28,11 @@ export default class Searchbar extends PureComponent {
       <div>
         <SearchHeader>
           <SearchForm onSubmit={this.submitHandler}>
-            <SearchForm_button type="submit">
-              <SearchForm_button_label>Search</SearchForm_button_label>
-            </SearchForm_button>
+            <SearchFormButton type="submit">
+              <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+            </SearchFormButton>
 
-            <SearchForm_input
+            <SearchFormInput
               type="text"
               autoComplete="off"
               autoFocus
