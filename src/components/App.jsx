@@ -16,14 +16,13 @@ export class App extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.inputValue !== this.state.inputValue &&
-      prevState.page === this.state.page
-    ) {
+    if (prevState.inputValue !== this.state.inputValue) {
+      this.setState({ images: [], page: 1 });
       this.getImages(this.state.inputValue);
-      this.setState({ images: [] });
+      console.log('изменился input');
     }
     if (prevState.page !== this.state.page) {
+      console.log('изменился page');
       this.getImages(this.state.inputValue);
     }
   }
@@ -46,7 +45,7 @@ export class App extends React.Component {
   };
 
   getInputValue = value => {
-    this.setState({ inputValue: value, page: 1 });
+    this.setState({ inputValue: value });
   };
 
   loadMore = () => {
