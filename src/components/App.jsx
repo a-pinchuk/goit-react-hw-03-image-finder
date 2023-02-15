@@ -1,11 +1,10 @@
 import React from 'react';
 import Searchbar from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { fetchImages } from './services/api';
+import { fetchImages } from '../services/api';
 import Modal from './Modal/Modal';
 import { InfinitySpin } from 'react-loader-spinner';
 import { Button } from './Button/Button';
-// import css from '../index.css';
 
 export class App extends React.Component {
   state = {
@@ -47,7 +46,7 @@ export class App extends React.Component {
   };
 
   getInputValue = value => {
-    this.setState({ inputValue: value });
+    this.setState({ inputValue: value, page: 1 });
   };
 
   loadMore = () => {
@@ -71,21 +70,28 @@ export class App extends React.Component {
     return (
       <>
         <Searchbar onSubmit={this.getInputValue} />
-        {isLoading && (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <InfinitySpin width="400" color="#4c2ef7" />
-          </div>
-        )}
-        <ImageGallery images={this.state.images} openModal={this.openModal} />
 
         {images.length !== 0 && (
-          <Button text="Load more" clickHandler={this.loadMore} />
+          <>
+            <ImageGallery
+              images={this.state.images}
+              openModal={this.openModal}
+            />
+            {isLoading && (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <InfinitySpin width="400" color="#4c2ef7" />
+              </div>
+            )}
+            {!isLoading && (
+              <Button text="Load more" clickHandler={this.loadMore} />
+            )}
+          </>
         )}
         {currentPreview && (
           <Modal closeModal={this.closeModal} showModal={currentPreview} />
