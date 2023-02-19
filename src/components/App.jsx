@@ -76,21 +76,22 @@ export class App extends React.Component {
               images={this.state.images}
               openModal={this.openModal}
             />
-            {isLoading && (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <InfinitySpin width="400" color="#4c2ef7" />
-              </div>
-            )}
+
             {!isLoading && (
               <Button text="Load more" clickHandler={this.loadMore} />
             )}
           </>
+        )}
+        {isLoading && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <InfinitySpin width="400" color="#4c2ef7" />
+          </div>
         )}
         {currentPreview && (
           <Modal closeModal={this.closeModal} showModal={currentPreview} />

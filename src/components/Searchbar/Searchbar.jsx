@@ -15,7 +15,6 @@ export default class Searchbar extends PureComponent {
 
   submitHandler = event => {
     event.preventDefault();
-
     this.props.onSubmit(this.state.inputValue);
   };
 
